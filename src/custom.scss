@@ -1,0 +1,199 @@
+@font-face {
+    font-family: "Work";
+    src: url("./fonts/WorkSans-VariableFont_wght.ttf");
+  }
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 900px,
+  xl: 920px,
+  xxl: 960px
+);
+
+
+$primary: #A7C957;
+$dark: #6A994E;
+$darker: #386641;
+$secondary: #BC4749;
+$basic: #F2E8CF;
+$gray: #787878;
+$btn-border-radius: 0.2rem;
+
+$input-placeholder-color: #a1a1a1;
+
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+/*
+ * 공통
+ */
+body {
+    font-family: 'Work' !important;
+}
+.fixed-top {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+.container-lg {
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+.fixed-bottom-nav {
+    position: fixed;
+    bottom:0;
+    max-width: 960px;
+    width: 100%;
+    background-color: #fff;
+    --tw-shadow: 1px -5px 15px 1px hsla(0,0%,75%,.1);
+    --tw-shadow-colored: 1px -5px 15px 1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+    // border-radius: 18px 18px 0 0;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    color: $gray;
+}
+
+/*
+ * 유틸성
+ */
+.cursor-pointer {
+    cursor: pointer;
+}
+.text-14 {
+    font-size: 14px;
+}
+.text-gray {
+    color: $gray !important;
+}
+.text-darker {
+    color:$darker;
+}
+.logo-image {
+    width: 124px;
+    height: 24px;
+}
+.tag-primary {
+    font-size: 14px !important;
+    font-weight: unset !important;
+    width: fit-content !important;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff !important;
+    background-color: $primary;
+}
+.bg-basic {
+    background-color: $basic;
+}
+.icon {
+    width: 15px;
+    height: 15px;
+}
+
+/* 
+ * Playground
+ */
+.thumbnail {
+    max-height: 300px;
+    overflow: hidden;
+    object-fit:cover
+}
+.facility-text {
+    font-size: 14px;
+    color:$darker;
+}
+.carousel-item img {
+    border-radius: 0.375rem 0.375rem 0 0;
+}
+.no-playground {
+    padding: 2rem;
+    text-align: center;
+    display: none;
+}
+.playground-container div.no-playground:only-child {
+    display: block;
+}
+.search-info-container{
+    margin: 0 1rem 1rem 1rem;
+    border: 0;
+    background-color: $basic;
+    .icon {
+        width: 17px;
+        height: 17px;
+    }
+}
+/*
+ * Contribute
+ */
+.contribute-section {
+    min-height: 290px;
+    width: 100%;
+    height: auto;
+    background-image: url('../public/images/contribute.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+}
+.contribute-content {
+    padding: 1rem;
+    margin-left: 50%;
+    font-size: 14px;
+    color: $gray;
+    .title {
+        color: #000;
+        font-size:18px;
+    }
+}
+.contribute-button {
+    border-radius: 10px;
+    padding: 0.25rem 0.725rem 0.25rem 0.725rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    font-size: 14px;
+}
+
+/*
+ * Search
+ */
+.keyword-input {
+    border-radius: 28px 0 0 28px !important;
+    border-right: 0 !important;
+    padding: 1rem 2rem 1rem 2rem !important;
+}
+.keyword-input:focus {
+    box-shadow: unset !important;
+    border-color: var(--bs-border-color) !important;
+}
+.keyword-icon {
+    background-color: #fff !important;
+    border-radius: 0 28px 28px 0 !important;
+    border-left: 0 !important;
+    padding-right: 1.5rem !important;
+}
+.search-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.border-checked  {
+    border-color: $primary;
+}
+.facility-check .icon {
+    width: 19px;
+    height: 19px;
+}
+.search-btn {
+    border-radius: 20px;
+    color: #fff;
+}
+.search-tag-primary {
+    font-size: 15px !important;
+    font-weight: unset !important;
+    width: fit-content !important;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff !important;
+    background-color: $primary;
+    padding: 1rem;
+}
+
