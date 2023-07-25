@@ -61,6 +61,7 @@ function PlaygroundList() {
         }
       });
     }
+    query = query.eq('isVisible', true);
     query = query.order('modified_at', { ascending: false });
     console.log(query)
     const { data } = await query;
