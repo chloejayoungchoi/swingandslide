@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 
 const supabase = createClient("https://fwfjgiktqvipjjgrqljc.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3ZmpnaWt0cXZpcGpqZ3JxbGpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg5MjY4NjksImV4cCI6MjAwNDUwMjg2OX0.V0sGPO1EVg0O-7j3HhCvVRVmw9TXZ5swenv1DhXDp1M");
 const IMAGE_PATH = "https://fwfjgiktqvipjjgrqljc.supabase.co/storage/v1/object/public/Swing&Slide/";
@@ -10,7 +11,12 @@ function ImageCarousel(p) {
     
     useEffect(() => {
         getImages();
-      }, []);
+        const carouselElements = document.querySelectorAll('.carousel');
+        carouselElements.forEach((element) => {
+            const carousel = bootstrapMin.Carousel.getOrCreateInstance(element);
+            carousel.pause();
+        });
+    }, []);
 
     const [images, setImages] = useState([]);
     async function getImages() {
@@ -74,38 +80,6 @@ function ImageCarousel(p) {
         </button>
         </div>
     );
-
-    /*
-    return (
-        <div id={p.playgroundId} className="carousel slide">
-        <div className="carousel-indicators">
-            <button type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div className="carousel-inner">
-            <div className="carousel-item active">
-            <img src="https://fwfjgiktqvipjjgrqljc.supabase.co/storage/v1/object/public/Swing&Slide/thumb-LionsPark.jpg" className="d-block w-100" alt="..."></img>
-            </div>
-            <div className="carousel-item">
-            <img src="https://fwfjgiktqvipjjgrqljc.supabase.co/storage/v1/object/public/Swing&Slide/thumb-TownCenterPark.jpg" className="d-block w-100" alt="..."></img>
-            </div>
-            <div className="carousel-item">
-            <img src="https://fwfjgiktqvipjjgrqljc.supabase.co/storage/v1/object/public/Swing&Slide/thumb-BlueMountainPark.jpeg" className="d-block w-100" alt="..."></img>
-            </div>
-        </div>
-        <button className="carousel-control-prev" type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-        </button>
-        <button className="carousel-control-next" type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-        </button>
-        </div>
-    );
-    */
-
 }
 
 export default ImageCarousel;
