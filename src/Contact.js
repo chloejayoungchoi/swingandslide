@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
+import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 
 function Contact() {
     const form = useRef();
@@ -8,6 +9,14 @@ function Contact() {
 
     function sendEmail(e) {
         e.preventDefault();
+
+        // validation
+        if (!form.current.checkValidity()) {
+            console.log('not good')
+            e.stopPropagation();
+            form.current.className = "was-validated";
+            return;
+        }
 
         // recaptcha
         const recaptchaValue = recaptchaRef.current.getValue();
@@ -23,21 +32,17 @@ function Contact() {
         console.log(emailForm);
         emailjs.send('service_cchoi6484', 'template_5c5n5td', emailForm, 'JpXUUhatC2LSUog0c')
             .then(function(response) {
+                form.current.className = "needs-validated";
                 console.log('SUCCESS!', response.status, response.text);
             }, function(error) {
+                form.current.className = "needs-validated";
                 console.log('FAILED...', error);
             });
-
-        // emailjs.sendForm('service_cchoi6484', 'template_5c5n5td', emailForm, 'JpXUUhatC2LSUog0c')
-        //     .then((result) => {
-        //         console.log(result.text);
-        //     }, (error) => {
-        //         console.log(error.text);
-        //     });
     }
 
-    function onChange(value) {
-        console.log("Captcha value:", value);
+    function recaptchaChanges(value) {
+        form.current.send_button.disabled = false;
+        console.log('recaptchaChanges')
     }
 
     return (
@@ -60,16 +65,16 @@ function Contact() {
                             <li>to request to add a playground</li>
                         </ol>
                     </div>
-                    <form ref={form} onSubmit={sendEmail}>
-                        <input type="text" className="form-control mb-2" name="playground_name" placeholder="Playground Name" />
-                        <textarea className="form-control mb-2" name="message" rows="5" placeholder="Message"></textarea>
-                        <input type="text" className="form-control mb-2" name="user_email" placeholder="Your Email Address" />
+                    <form ref={form} onSubmit={sendEmail} className="needs-validation" noValidate>
+                        <input type="text" className="form-control mb-2" name="playground_name" placeholder="Playground Name" required />
+                        <textarea className="form-control mb-2" name="message" rows="5" placeholder="Message" required ></textarea>
+                        <input type="text" className="form-control mb-2" name="user_email" placeholder="Your Email Address" required />
                         <ReCAPTCHA
                             sitekey="6LfuslgnAAAAAJeTJGY5KhGUcHehfnLPheVv4_bC"
                             ref={recaptchaRef}
-                            onChange={onChange}
+                            onChange={recaptchaChanges}
                         />
-                        <button type="submit" className="btn btn-primary w-100">
+                        <button type="submit" name="send_button" className="btn btn-primary w-100" disabled>
                             Send
                             <span className="visually-hidden">Send an email</span>
                         </button>
