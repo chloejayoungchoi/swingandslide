@@ -33,19 +33,20 @@ function ImageCarousel(p) {
         setImages(data);
     }
 
+    // indicators 주석처리 230726
     let indicators = [], carousels = [];
     images.forEach((image, index)=>{
-        indicators.push(
-            <button 
-                type="button" 
-                data-bs-target={"#"+p.playgroundId} 
-                data-bs-slide-to={index}
-                className={index===0?'active':''} 
-                aria-current={index===0?'true':''} 
-                aria-label={p.playgroundName + index}
-                key={"indicator="+image.id}>
-            </button>
-        );
+        // indicators.push(
+        //     <button 
+        //         type="button" 
+        //         data-bs-target={"#"+p.playgroundId} 
+        //         data-bs-slide-to={index}
+        //         className={index===0?'active':''} 
+        //         aria-current={index===0?'true':''} 
+        //         aria-label={p.playgroundName + index}
+        //         key={"indicator="+image.id}>
+        //     </button>
+        // );
 
         carousels.push(
             <div className={'carousel-item ' + (index===0?'active':'')} key={"slide="+image.id}>
@@ -60,21 +61,23 @@ function ImageCarousel(p) {
                 </img>
             </div>
         );
-    })
+    });
+
+    const showControl = (images.length > 1)?'':' d-none';
 
     return (
         <div id={p.playgroundId} className="carousel slide">
-        <div className="carousel-indicators">
+        {/* <div className="carousel-indicators">
             {indicators}
-        </div>
+        </div> */}
         <div className="carousel-inner">
             {carousels}
         </div>
-        <button className="carousel-control-prev" type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="prev">
+        <button className={"carousel-control-prev" + showControl} type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Previous</span>
         </button>
-        <button className="carousel-control-next" type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="next">
+        <button className={"carousel-control-next" + showControl} type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="next">
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
         </button>
