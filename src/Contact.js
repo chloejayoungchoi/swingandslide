@@ -84,7 +84,7 @@ function Contact() {
                             onChange={recaptchaChanges}
                             className="w-100 text-center"
                         />
-                        <button type="submit" name="send_button" className="btn btn-primary w-100" >
+                        <button type="submit" name="send_button" className="btn btn-primary w-100" disabled>
                             Send
                             <span className="visually-hidden">Send an email</span>
                         </button>
