@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Playground from "./Playground";
 import { useLocation } from 'react-router-dom';
-import { BiSearch, BiX } from "react-icons/bi";
+import { BiSearch, BiX, BiRightTopArrowCircle } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
 import { Link } from "react-router-dom";
 
@@ -19,23 +19,29 @@ function PlaygroundList() {
   let conditionCard = ``;
   if(conditions !== null) {
     let searchFacilityList = Object.keys(FACILITIES).map((key) => 
-      conditions[key]?<span className="pe-3 text-muted text-14" key={"search-tag-"+key}>{FACILITIES[key].icon} {FACILITIES[key].title}</span>:null
+      // conditions[key]?<span className="pe-3 text-muted text-14" key={"search-tag-"+key}>{FACILITIES[key].icon} {FACILITIES[key].title}</span>:null
+      conditions[key]?<span className="badge rounded-pill tag-light m-0" key={"search-tag-"+key}>{FACILITIES[key].icon} {FACILITIES[key].title}</span>:null
     );
     searchFacilityList = searchFacilityList.filter((tag)=> tag !== null);
-    console.log(searchFacilityList)
-    if(Array.isArray(searchFacilityList) && searchFacilityList.length>0){
-      searchFacilityList = [<hr className="my-1"/>,  ...searchFacilityList];
-    }
+    // console.log(searchFacilityList)
+    // if(Array.isArray(searchFacilityList) && searchFacilityList.length>0){
+    //   searchFacilityList = [<hr className="my-1"/>,  ...searchFacilityList];
+    // }
 
     conditionCard = (
-        <div className="card search-info-container mt-2 p-2">
+      <div>
+        <div className="card search-info-container mt-2 mb-0 p-2">
           <span><BiSearch className="me-2" />
           {conditions.keyword===null?'':conditions.keyword}
-          <Link to="/search" className="text-gray float-end"><BiX className="fs-4" /></Link>
+          <Link to="/" className="text-gray float-end"><BiX className="fs-4" /></Link>
           {conditions.tag?<span className="badge rounded-pill tag-primary m-0">#{conditions.tag}</span>:''}
           {searchFacilityList}
           </span>
         </div>
+        <div className="row ps-3">
+        <Link to="/search" className="text-muted text-decoration-none">new search <BiRightTopArrowCircle /></Link>
+        </div>
+      </div>
     );
   }
 
