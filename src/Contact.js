@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
-import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Contact() {
     const form = useRef();
@@ -33,10 +34,16 @@ function Contact() {
         emailjs.send('service_cchoi6484', 'template_5c5n5td', emailForm, 'JpXUUhatC2LSUog0c')
             .then(function(response) {
                 form.current.className = "needs-validated";
-                console.log('SUCCESS!', response.status, response.text);
+                // console.log('SUCCESS!', response.status, response.text);
+                toast.success("Your message has been sent!", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
             }, function(error) {
                 form.current.className = "needs-validated";
-                console.log('FAILED...', error);
+                // console.log('FAILED...', error);
+                toast.error("Oops, something goes wrong.", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                  });
             });
     }
 
@@ -51,9 +58,7 @@ function Contact() {
                 <div className="card-body pt-0">
                     <div className="d-flex justify-content-between align-items-center px-2 mb-2">
                         <div>
-                            <h3 className="fs-2 mb-0 me-3">Please Let Us Know</h3>
-                            {/* <span className="text-muted">at cchoi6484@gmail.com</span><br/>
-                            <span className="text-muted">or use the form below</span> */}
+                            <h3 className="fs-2 mb-0 me-3 text-pri">Please Let Us Know</h3>
                         </div>
                         <img className="w-50" src="/images/email.jpg" alt="Email Us"></img>
                     </div>
@@ -64,17 +69,22 @@ function Contact() {
                             <li>to contribute photos or facility info</li>
                             <li>to request to add a playground</li>
                         </ol>
+                        <p className="bg-basic p-2 border-radius-8">
+                            Email directly at cchoi6484@gmail.com<br/>
+                            or use the form below
+                        </p>
                     </div>
                     <form ref={form} onSubmit={sendEmail} className="needs-validation" noValidate>
-                        <input type="text" className="form-control mb-2" name="playground_name" placeholder="Playground Name" required />
-                        <textarea className="form-control mb-2" name="message" rows="5" placeholder="Message" required ></textarea>
+                        <input type="text" className="form-control mb-2" name="playground_name" placeholder="Playground Name" autoComplete="off" required />
+                        <textarea className="form-control mb-2" name="message" rows="5" placeholder="Message" autoComplete="off" required ></textarea>
                         <input type="text" className="form-control mb-2" name="user_email" placeholder="Your Email Address" required />
                         <ReCAPTCHA
                             sitekey="6LfuslgnAAAAAJeTJGY5KhGUcHehfnLPheVv4_bC"
                             ref={recaptchaRef}
                             onChange={recaptchaChanges}
+                            className="w-100 text-center"
                         />
-                        <button type="submit" name="send_button" className="btn btn-primary w-100" disabled>
+                        <button type="submit" name="send_button" className="btn btn-primary w-100" >
                             Send
                             <span className="visually-hidden">Send an email</span>
                         </button>
@@ -87,6 +97,7 @@ function Contact() {
                 <li className="list-group-item">Privacy Policy</li>
                 <li className="list-group-item">Image Attribution</li>
             </ul>
+            <ToastContainer />
         </div>
     );
 }
