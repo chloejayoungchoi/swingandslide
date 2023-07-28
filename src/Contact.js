@@ -69,8 +69,8 @@ function Contact() {
                             <li>to contribute photos or facility info</li>
                             <li>to request to add a playground</li>
                         </ol>
-                        <p className="bg-basic p-2 border-radius-8">
-                            Email directly at cchoi6484@gmail.com<br/>
+                        <p className="bg-basic p-2 border-radius-8 text-center">
+                            Email directly at <span className="text-secondary">support@swingandslide.net</span><br/>
                             or use the form below
                         </p>
                     </div>
