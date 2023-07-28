@@ -31,7 +31,7 @@ function Contact() {
             "g-recaptcha-response" : recaptchaValue
         };
         console.log(emailForm);
-        emailjs.send('service_cchoi6484', 'template_5c5n5td', emailForm, 'JpXUUhatC2LSUog0c')
+        emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, emailForm, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
             .then(function(response) {
                 form.current.className = "needs-validated";
                 // console.log('SUCCESS!', response.status, response.text);

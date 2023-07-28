@@ -6,7 +6,7 @@ import { BiSearch, BiX, BiRightTopArrowCircle } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
 import { Link } from "react-router-dom";
 
-const supabase = createClient("https://fwfjgiktqvipjjgrqljc.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3ZmpnaWt0cXZpcGpqZ3JxbGpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg5MjY4NjksImV4cCI6MjAwNDUwMjg2OX0.V0sGPO1EVg0O-7j3HhCvVRVmw9TXZ5swenv1DhXDp1M");
+const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
 function PlaygroundList() {
   // console.log('this is app at ' + new Date());

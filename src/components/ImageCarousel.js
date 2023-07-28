@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 
-const supabase = createClient("https://fwfjgiktqvipjjgrqljc.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3ZmpnaWt0cXZpcGpqZ3JxbGpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg5MjY4NjksImV4cCI6MjAwNDUwMjg2OX0.V0sGPO1EVg0O-7j3HhCvVRVmw9TXZ5swenv1DhXDp1M");
-const IMAGE_PATH = "https://fwfjgiktqvipjjgrqljc.supabase.co/storage/v1/object/public/Swing&Slide/";
+const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
+const IMAGE_PATH = process.env.REACT_APP_SUPABASE_STORAGE_DEFAULT_PATH;
 
 function ImageCarousel(p) {
     // console.log('this is imagecarousel at ' + new Date());
