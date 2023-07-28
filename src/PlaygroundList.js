@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Playground from "./Playground";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { BiSearch, BiX, BiRightTopArrowCircle } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
-import { Link } from "react-router-dom";
+import ReactGA from "react-ga4";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -77,7 +77,6 @@ function PlaygroundList() {
       setPlaygrounds(data);
     }
   }
-
   
   const playgroundList = playgrounds.map((p) => 
     <Playground 
@@ -85,6 +84,11 @@ function PlaygroundList() {
       playground={p}
     />
   );
+
+  const navigate = useNavigate();
+  function contribute() {
+    navigate("/contact");
+  }
   
   return (
     <div>
@@ -100,7 +104,7 @@ function PlaygroundList() {
           </div>
           <p>There are still many amazing playgrounds that we haven't discovered yet.</p>
           <div className="text-end">
-            <button type="button" className="btn btn-secondary contribute-button">Contribute</button>
+            <button type="button" className="btn btn-secondary contribute-button" onClick={contribute}>Contribute</button>
           </div>
         </div>
       </div>
