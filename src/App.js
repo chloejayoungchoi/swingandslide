@@ -1,9 +1,11 @@
 import { BiHome, BiSearch, BiInfoCircle} from "react-icons/bi";
 import { Outlet, Link } from "react-router-dom";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 // import logo from "/images/logo.png";
 
 function App() {
   // console.log('this is app at ' + new Date());
+  GoogleAnalytics();
 
   return (
     <div className="container-lg px-0">
