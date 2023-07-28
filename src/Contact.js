@@ -79,10 +79,10 @@ function Contact() {
                         <textarea className="form-control mb-2" name="message" rows="5" placeholder="Message" autoComplete="off" required ></textarea>
                         <input type="text" className="form-control mb-2" name="user_email" placeholder="Your Email Address" required />
                         <ReCAPTCHA
-                            sitekey="6LfuslgnAAAAAJeTJGY5KhGUcHehfnLPheVv4_bC"
+                            sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY}
                             ref={recaptchaRef}
                             onChange={recaptchaChanges}
-                            className="w-100 text-center"
+                            className="d-flex"
                         />
                         <button type="submit" name="send_button" className="btn btn-primary w-100" disabled>
                             Send
