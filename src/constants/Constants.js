@@ -20,5 +20,5 @@ export const FACILITIES = {
 };
 
 export const SEARCH_TAGS = [
-    'ZipLine', 'AccessibleSwing'
+    'ZipLine', 'Skateboard', 'Concession', 'AccessibleSwing'
 ];
