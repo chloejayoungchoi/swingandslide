@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Playground from "./Playground";
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { BiSearch, BiX, BiRightTopArrowCircle } from "react-icons/bi";
+import { BiSearch, BiX, BiRefresh } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
 import ReactGA from "react-ga4";
 
@@ -20,7 +20,7 @@ function PlaygroundList() {
   if(conditions !== null) {
     let searchFacilityList = Object.keys(FACILITIES).map((key) => 
       // conditions[key]?<span className="pe-3 text-muted text-14" key={"search-tag-"+key}>{FACILITIES[key].icon} {FACILITIES[key].title}</span>:null
-      conditions[key]?<span className="badge rounded-pill tag-light m-0" key={"search-tag-"+key}>{FACILITIES[key].icon} {FACILITIES[key].title}</span>:null
+      conditions[key]?<span className="badge rounded-pill tag-light m-0 me-1" key={"search-tag-"+key}>{FACILITIES[key].icon} {FACILITIES[key].title}</span>:null
     );
     searchFacilityList = searchFacilityList.filter((tag)=> tag !== null);
     // console.log(searchFacilityList)
@@ -38,8 +38,8 @@ function PlaygroundList() {
           {searchFacilityList}
           </span>
         </div>
-        <div className="row ps-3">
-        <Link to="/search" className="text-muted text-decoration-none">new search <BiRightTopArrowCircle /></Link>
+        <div className="row ps-3 text-center">
+        <Link to="/search" className="text-primary">new search<BiRefresh /></Link>
         </div>
       </div>
     );
