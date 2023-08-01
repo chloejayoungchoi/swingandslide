@@ -1,14 +1,14 @@
 {
-  "short_name": "Swing & Slide App",
-  "name": "All Playgrounds You love",
+  "short_name": "Swing & Slide",
+  "name": "Swing & Slide",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://swingandslide.net",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
