@@ -3,7 +3,7 @@
   "name": "Swing & Slide",
   "icons": [
     {
-      "src": "logo192.png",
+      "src": "/images/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
