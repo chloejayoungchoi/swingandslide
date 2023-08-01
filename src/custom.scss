@@ -53,6 +53,7 @@ body {
     display: flex;
     justify-content: space-around;
     color: $gray;
+    padding: 0.3rem 1rem 1rem 1rem;
 }
 
 /*
@@ -209,4 +210,9 @@ body {
     background-color: $primary;
     padding: 1rem;
 }
-
+/*
+ * Terms
+ */
+.terms p {
+    font-size: 0.7rem;
+} 
