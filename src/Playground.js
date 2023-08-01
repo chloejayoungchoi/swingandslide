@@ -26,8 +26,6 @@ function Playground(p) {
     }
 
     function searchByTag(e) {
-        console.log('searchByTag')
-        console.log(e.target.innerText);
         navigate("/playground", {
             state: {'tag':e.target.innerText.substring(1)}
         });

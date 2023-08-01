@@ -14,7 +14,6 @@ function Contact() {
 
         // validation
         if (!form.current.checkValidity()) {
-            console.log('not good')
             e.stopPropagation();
             form.current.className = "was-validated";
             return;
@@ -23,15 +22,12 @@ function Contact() {
         // recaptcha
         const recaptchaValue = recaptchaRef.current.getValue();
         
-        console.log('sending email soon');
-
         let emailForm = {
             "playground_name" : form.current.playground_name.value,
             "message" : form.current.message.value,
             "user_email" : form.current.user_email.value,
             "g-recaptcha-response" : recaptchaValue
         };
-        console.log(emailForm);
         emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, emailForm, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
             .then(function(response) {
                 form.current.className = "needs-validated";
@@ -50,7 +46,6 @@ function Contact() {
 
     function recaptchaChanges(value) {
         form.current.send_button.disabled = false;
-        console.log('recaptchaChanges')
     }
 
     return (

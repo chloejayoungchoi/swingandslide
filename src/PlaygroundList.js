@@ -60,13 +60,9 @@ function PlaygroundList() {
         }else if(key === 'keyword') {
           // query = query.like("name", '%'+conditions[key]+'%');
           let searchKeywords = conditions[key];
-          console.log(conditions[key]);
           if(searchKeywords.includes(' ')) {
             searchKeywords = searchKeywords.replaceAll(' ', ' | ');
-            console.log('replaced');
           }
-          console.log(searchKeywords)
-          console.log('11111')
           query = query.textSearch('search_columns', searchKeywords);
           // query = query.or(`name.fts(english).${conditions[key]}, location->>city.fts(english).${conditions[key]}`)
         }else {

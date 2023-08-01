@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function GoogleAnalytics() {
-    console.log('GA');
     const location = useLocation();
     const [initialized, setInitialized] = useState(false);
 
@@ -16,7 +15,6 @@ function GoogleAnalytics() {
 
     useEffect(()=>{
         if(initialized) {
-            console.log('GA for ' + location.pathname);
             ReactGA.set({path: location.pathname});
             ReactGA.send("pageview");
         }

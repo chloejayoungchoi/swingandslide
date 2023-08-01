@@ -5,7 +5,6 @@ import { FACILITIES, SEARCH_TAGS } from "./constants/Constants";
 import { useNavigate } from "react-router-dom";
 
 function Search() {
-    console.log('search')
     const navigate = useNavigate();
     const checkboxList = Object.values(FACILITIES).map((f) => 
         <SearchCheckbox 
