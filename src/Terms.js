@@ -32,26 +32,26 @@ function Terms(p) {
             <h6>Acceptable Use</h6>
             <p>
                 As a user of our Site, you agree to use our Site legally, not to use our Site for illegal purposes, and not to:
-	            <ul>
-		        <li>Harass or mistreat other users of our Site;</li>
-		        <li>Violate the rights of other users of our Site;</li>
-		        <li>Violate the intellectual property rights of the Site owners or any third party to the Site;</li>
-		        <li>Hack into the account of another user of the Site;</li>
-		        <li>Act in any way that could be considered fraudulent; or</li>
-		        <li>Post any material that may be deemed inappropriate or offensive.</li>
-	            </ul>
             </p>
+            <ul>
+            <li>Harass or mistreat other users of our Site;</li>
+            <li>Violate the rights of other users of our Site;</li>
+            <li>Violate the intellectual property rights of the Site owners or any third party to the Site;</li>
+            <li>Hack into the account of another user of the Site;</li>
+            <li>Act in any way that could be considered fraudulent; or</li>
+            <li>Post any material that may be deemed inappropriate or offensive.</li>
+            </ul>
 	        <p>
                 If we believe you are using our Site illegally or in a manner that violates these Terms and Conditions, we reserve the right to limit, suspend or terminate your access to our Site. We also reserve the right to take any legal steps necessary to prevent you from accessing our Site.
 	        </p>
             <h6>Accounts</h6>
             <p>
                 When you create an account on our Site, you agree to the following:
-	            <ol>
-		        <li>You are solely responsible for your account and the security and privacy of your account, including passwords or sensitive information attached to that account; and</li>
-		        <li>All personal information you provide to us through your account is up to date, accurate, and truthful and that you will update your personal information if it changes.</li>
-	            </ol>
             </p>
+            <ol>
+            <li>You are solely responsible for your account and the security and privacy of your account, including passwords or sensitive information attached to that account; and</li>
+            <li>All personal information you provide to us through your account is up to date, accurate, and truthful and that you will update your personal information if it changes.</li>
+            </ol>
 	        <p>
                 We reserve the right to suspend or terminate your account if you are using our Site illegally or if you violate these Terms and Conditions.
             </p>

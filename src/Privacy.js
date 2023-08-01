@@ -43,13 +43,13 @@ function Privacy(p) {
             </p>
             <p>
                 1.2  We will only collect member information that is necessary to fulfill the following purposes: 
-                <ul>
-                <li>To verify identity</li>
-                <li>To personalized members’ experience</li>
-                <li>To provide our members with improved service</li> 
-                <li>To send out emails to respond members’ inquiries or request.</li>
-                </ul>
             </p>
+            <ul>
+            <li>To verify identity</li>
+            <li>To personalized members’ experience</li>
+            <li>To provide our members with improved service</li> 
+            <li>To send out emails to respond members’ inquiries or request.</li>
+            </ul>
             <h6>Policy 2 – Consent</h6>
             <p>
                 2.1  We will obtain member consent to collect, use or disclose personal information (except where, as noted below, we are authorized to do so without consent). 
@@ -65,16 +65,16 @@ function Privacy(p) {
             </p>
             <p>
                 2.5  We may collect, use or disclose personal information without the member’s knowledge or consent in the following limited circumstances: 
-                <ul>
-                <li>When the collection, use or disclosure of personal information is permitted or required by law;</li>
-                <li>In an emergency that threatens an individual's life, health, or personal security;</li>
-                <li>When the personal information is available from a public source (e.g., a telephone directory);</li>
-                <li>When we require legal advice from a lawyer;</li>
-                <li>For the purposes of collecting a debt;</li>
-                <li>To protect ourselves from fraud;</li>
-                <li>To investigate an anticipated breach of an agreement or a contravention of law </li>
-                </ul>
             </p>
+            <ul>
+            <li>When the collection, use or disclosure of personal information is permitted or required by law;</li>
+            <li>In an emergency that threatens an individual's life, health, or personal security;</li>
+            <li>When the personal information is available from a public source (e.g., a telephone directory);</li>
+            <li>When we require legal advice from a lawyer;</li>
+            <li>For the purposes of collecting a debt;</li>
+            <li>To protect ourselves from fraud;</li>
+            <li>To investigate an anticipated breach of an agreement or a contravention of law </li>
+            </ul>
             <h6>Policy 3 – Using and Disclosing Personal Information</h6>
             <p>
                 3.1  We will only use or disclose member personal information where necessary to fulfill the purposes identified at the time of collection 
@@ -108,12 +108,12 @@ function Privacy(p) {
             </p>
             <p>
                 6.2  The following security measures will be followed to ensure that member personal information is appropriately protected: 
-                <ul>
-                    <li>Store the data in a secure storage</li>
-                    <li>the use of user IDs, passwords, encryption, firewalls</li>
-                    <li>restricting employee access to personal information as appropriate</li>
-                </ul>
             </p>
+            <ul>
+                <li>Store the data in a secure storage</li>
+                <li>the use of user IDs, passwords, encryption, firewalls</li>
+                <li>restricting employee access to personal information as appropriate</li>
+            </ul>
             <p>
                 6.3  We will use appropriate security measures when destroying member’s personal information by deleting electronically stored information. 
             </p>
