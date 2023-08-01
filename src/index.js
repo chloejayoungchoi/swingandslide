@@ -11,6 +11,8 @@ import PlaygroundList from './PlaygroundList';
 import Search from './Search';
 import Contact from './Contact';
 import ScrollToTop from './components/ScrollToTop';
+import Privacy from './Privacy';
+import Terms from './Terms';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -23,6 +25,8 @@ root.render(
         <Route path="/playground" element={<PlaygroundList />} />
         <Route path="search" element={<Search />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="terms" element={<Terms />} />
       </Route>
     </Routes>
   </BrowserRouter>

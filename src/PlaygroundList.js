@@ -4,7 +4,6 @@ import Playground from "./Playground";
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { BiSearch, BiX, BiRefresh } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
-import ReactGA from "react-ga4";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -14,7 +13,6 @@ function PlaygroundList() {
 
   const location = useLocation();
   const conditions = location.state;
-  console.log(conditions);
 
   let conditionCard = ``;
   if(conditions !== null) {
@@ -50,18 +48,27 @@ function PlaygroundList() {
   }, [conditions]);
 
   async function getPlaygrounds() {
-    let query = supabase.from("playground").select();
+    let query = supabase.from("playground")
+                      .select("id, name, location, " + Object.keys(FACILITIES).toString());
     if(conditions !== null) {
       Object.keys(conditions).forEach((key, index)=>{
         if(key === 'tag') {
           query = supabase.from("playground_by_tag")
-                          .select()
+                          .select("id, name, location, " + Object.keys(FACILITIES).toString())
                           .eq('tag', conditions[key]);
             
         }else if(key === 'keyword') {
           // query = query.like("name", '%'+conditions[key]+'%');
-          // query = query.textSearch('name', conditions[key], {config: 'english'});
-          query = query.or(`name.fts(english).${conditions[key]}, location->>city.fts(english).${conditions[key]}`)
+          let searchKeywords = conditions[key];
+          console.log(conditions[key]);
+          if(searchKeywords.includes(' ')) {
+            searchKeywords = searchKeywords.replaceAll(' ', ' | ');
+            console.log('replaced');
+          }
+          console.log(searchKeywords)
+          console.log('11111')
+          query = query.textSearch('search_columns', searchKeywords);
+          // query = query.or(`name.fts(english).${conditions[key]}, location->>city.fts(english).${conditions[key]}`)
         }else {
           query = query.eq(key, conditions[key]);
         }
@@ -69,7 +76,6 @@ function PlaygroundList() {
     }
     query = query.eq('isVisible', true);
     query = query.order('modified_at', { ascending: false });
-    console.log(query)
     const { data } = await query;
     if(data===null || !Array.isArray(data)) {
       setPlaygrounds([]);

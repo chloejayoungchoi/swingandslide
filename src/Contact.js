@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 function Contact() {
     const form = useRef();
@@ -93,8 +94,8 @@ function Contact() {
             </div>
             <ul className="list-group">
                 <li className="list-group-item">Version 1.0</li>
-                <li className="list-group-item">Terms of Use</li>
-                <li className="list-group-item">Privacy Policy</li>
+                <li className="list-group-item"><Link to="/terms" className="text-decoration-none text-black cursor-pointer">Terms of Use</Link></li>
+                <li className="list-group-item"><Link to="/privacy" className="text-decoration-none text-black cursor-pointer">Privacy Policy</Link></li>
                 <li className="list-group-item">Image Attribution</li>
             </ul>
             <ToastContainer />

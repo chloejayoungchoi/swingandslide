@@ -15,7 +15,7 @@ function App() {
         </div>
       </nav>
       <Outlet />
-      <div className="fixed-bottom-nav p-2 fs-3">
+      <div className="fixed-bottom-nav fs-3">
         <div className="cursor-pointer"><Link to="/" className="text-gray"><BiHome /></Link></div>
         <div className="cursor-pointer"><Link to="/search" className="text-gray"><BiSearch /></Link></div>
         <div className="cursor-pointer"><Link to="/contact" className="text-gray"><BiInfoCircle /></Link></div>
