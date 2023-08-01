@@ -13,6 +13,7 @@ import Contact from './Contact';
 import ScrollToTop from './components/ScrollToTop';
 import Privacy from './Privacy';
 import Terms from './Terms';
+import ImageAttribution from './ImageAttribution';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -27,6 +28,7 @@ root.render(
         <Route path="contact" element={<Contact />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
+        <Route path="images" element={<ImageAttribution />} />
       </Route>
     </Routes>
   </BrowserRouter>

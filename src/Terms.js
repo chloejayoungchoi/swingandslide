@@ -1,10 +1,17 @@
 import React from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 function Terms(p) {
-    // console.log('this is facility' + new Date()); 
+    const navigate = useNavigate();
+
+    function goBack() {
+        navigate(-1);
+    }
 
     return (
         <div className="terms p-3">
+            <BiArrowBack class="fs-2 text-muted me-3" onClick={goBack} />
             <h4 className="text-center">Swing & Slide</h4>
             <h5 className="text-center">Terms of Use</h5>
             <hr/>

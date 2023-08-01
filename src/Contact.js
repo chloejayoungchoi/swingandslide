@@ -91,7 +91,7 @@ function Contact() {
                 <li className="list-group-item">Version 1.0</li>
                 <li className="list-group-item"><Link to="/terms" className="text-decoration-none text-black cursor-pointer">Terms of Use</Link></li>
                 <li className="list-group-item"><Link to="/privacy" className="text-decoration-none text-black cursor-pointer">Privacy Policy</Link></li>
-                <li className="list-group-item">Image Attribution</li>
+                <li className="list-group-item"><Link to="/images" className="text-decoration-none text-black cursor-pointer">Image Attribution</Link></li>
             </ul>
             <ToastContainer />
         </div>
