@@ -11,7 +11,7 @@ function Privacy(p) {
 
     return (
         <div className="terms p-3">
-            <BiArrowBack class="fs-2 text-muted back-arrow" onClick={goBack} />
+            <BiArrowBack className="fs-2 text-muted back-arrow" onClick={goBack} />
             <h4 className="text-center">Swing & Slide</h4>
             <h5 className="text-center">Personal Information Protection Policy</h5>
             <hr/>

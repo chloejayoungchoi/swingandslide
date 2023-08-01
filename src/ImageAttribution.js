@@ -12,7 +12,7 @@ function ImageAttribution(p) {
 
     return (
         <div className="terms p-3">
-            <BiArrowBack class="fs-2 text-muted back-arrow" onClick={goBack} />
+            <BiArrowBack className="fs-2 text-muted back-arrow" onClick={goBack} />
             <h5 className="text-center">Image Attribution</h5>
             <hr/>
             <img 
