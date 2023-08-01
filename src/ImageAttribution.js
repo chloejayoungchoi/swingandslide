@@ -12,8 +12,9 @@ function ImageAttribution(p) {
 
     return (
         <div className="terms p-3">
-            <BiArrowBack class="fs-2 text-muted me-3" onClick={goBack} />
-            <h5 className="text-center text-muted">Image Attribution</h5>
+            <BiArrowBack class="fs-2 text-muted back-arrow" onClick={goBack} />
+            <h5 className="text-center">Image Attribution</h5>
+            <hr/>
             <img 
                 src={IMAGE_PATH+'thumb-default.jpg'} 
                 className="d-block w-100" 
