@@ -30,7 +30,7 @@ function PlaygroundList() {
       <div>
         <div className="card search-info-container mt-2 mb-0 p-2">
           <span><BiSearch className="me-2" />
-          {conditions.keyword===null?'':conditions.keyword}
+          <span className="me-1">{conditions.keyword===null?'':conditions.keyword}</span>
           <Link to="/" className="text-gray float-end"><BiX className="fs-4" /></Link>
           {conditions.tag?<span className="badge rounded-pill tag-primary m-0">#{conditions.tag}</span>:''}
           {searchFacilityList}
