@@ -16,9 +16,9 @@ function App() {
       </nav>
       <Outlet />
       <div className="fixed-bottom-nav fs-3">
-        <div className="cursor-pointer"><Link to="/" className="text-gray"><BiHome /></Link></div>
-        <div className="cursor-pointer"><Link to="/search" className="text-gray"><BiSearch /></Link></div>
-        <div className="cursor-pointer"><Link to="/contact" className="text-gray"><BiInfoCircle /></Link></div>
+        <Link to="/"><div className="cursor-pointer px-4"><BiHome  className="text-gray"/></div></Link>
+        <Link to="/search"><div className="cursor-pointer px-4"><BiSearch  className="text-gray"/></div></Link>
+        <Link to="/contact"><div className="cursor-pointer px-4"><BiInfoCircle  className="text-gray"/></div></Link>
       </div>
     </div>
   );
