@@ -36,8 +36,8 @@ function PlaygroundList() {
           {searchFacilityList}
           </span>
         </div>
-        <div className="row ps-3 text-center">
-        <Link to="/search" className="text-primary">new search<BiRefresh /></Link>
+        <div className="ps-3 text-center">
+        <Link to="/search" className="text-secondary"><BiRefresh /> new search <BiRefresh /></Link>
         </div>
       </div>
     );
