@@ -1,4 +1,4 @@
-import React, { Children, useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -9,7 +9,6 @@ function Map() {
     const [map, setMap] = useState(null);
     const ref = useRef();
     const navigate = useNavigate();
-
     const location = useLocation();
     const selectedPoint = location.state;
 
@@ -66,7 +65,7 @@ function Map() {
                 name.style="font-size:17px;font-weight:400:margin-bottom:1rem;"
 
                 let aTag = document.createElement('a');
-                aTag.innerHTML = 'View on Google Maps';
+                aTag.innerHTML = 'Get directions';
                 aTag.target = "_blank";
                 // aTag.href = 'https://www.google.com/maps/search/?api=1&query=waterfront+park'; // 이름으로 검색
                 aTag.href = `https://www.google.com/maps/dir/?api=1&destination=${playground.map_position.lat},${playground.map_position.lng}`; // 경로
