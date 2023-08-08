@@ -58,9 +58,22 @@ function Map() {
                 }
 
                 let content = document.createElement('div');
-                content.innerHTML = playground.name;
-                content.onclick = function(){search(playground.id)};
-                content.style="font-family:Work;font-size:15px;font-weight:400;padding:0.5rem;"
+                content.style="font-family:Work;padding:0.5rem;"
+
+                let name = document.createElement('p');
+                name.innerHTML = playground.name;
+                name.onclick = function(){search(playground.id)};
+                name.style="font-size:17px;font-weight:400:margin-bottom:1rem;"
+
+                let aTag = document.createElement('a');
+                aTag.innerHTML = 'View on Google Maps';
+                aTag.target = "_blank";
+                // aTag.href = 'https://www.google.com/maps/search/?api=1&query=waterfront+park'; // 이름으로 검색
+                aTag.href = `https://www.google.com/maps/dir/?api=1&destination=${playground.map_position.lat},${playground.map_position.lng}`; // 경로
+                // aTag.href = `https://maps.google.com/maps?ll=${playground.map_position.lat},${playground.map_position.lng}&z=12&t=m&hl=en-US&gl=US&mapclient=apiv3&cid=615890954450113111`; // cid까지 잘 넣어야 함
+
+                content.append(name);
+                content.append(aTag);
 
                 const infoWindow = new window.google.maps.InfoWindow({
                     content: content,
