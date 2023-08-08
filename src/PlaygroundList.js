@@ -4,6 +4,7 @@ import Playground from "./Playground";
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { BiSearch, BiX, BiRefresh } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
+import Ads from "./components/Ads";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -86,6 +87,13 @@ function PlaygroundList() {
       playground={p}
     />
   );
+
+  for(let i=0; i<playgroundList.length; i++) {
+    if(i>0 && i%4==0) {
+      playgroundList.splice(i, 0, <Ads key={'ads' + i} />)
+    }
+  }
+  playgroundList.splice(1, 0, <Ads key={'ads' + 0} />)
 
   const navigate = useNavigate();
   function contribute() {
