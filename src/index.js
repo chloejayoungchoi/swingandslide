@@ -14,6 +14,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Privacy from './Privacy';
 import Terms from './Terms';
 import ImageAttribution from './ImageAttribution';
+import MapBrowse from './MapBrowse';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,6 +26,7 @@ root.render(
         <Route path="/" element={<PlaygroundList />} />
         <Route path="/playground" element={<PlaygroundList />} />
         <Route path="search" element={<Search />} />
+        <Route path="map" element={<MapBrowse />} />
         <Route path="contact" element={<Contact />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />

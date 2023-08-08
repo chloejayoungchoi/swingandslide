@@ -31,6 +31,12 @@ function Playground(p) {
         });
     }
 
+    function goToMap(point) {
+        navigate("/map", {
+            state: point
+        });
+    }
+
     useEffect(() => {
         getTags();
       }, []);
@@ -53,7 +59,7 @@ function Playground(p) {
             />
             <div className="card-body">
                 <h5 className="card-title mb-0">{pg.name}</h5>
-                <span className="text-muted"><BiMap /> {pg.location.city}, {pg.location.province}, {pg.location.country}</span>
+                <span className="text-muted" onClick={()=>{goToMap(pg.location.map_position)}}><BiMap /> {pg.location.city}, {pg.location.province}, {pg.location.country}</span>
                 <p className="card-text"></p>
                 <div className="row">
                    {facilityList}
