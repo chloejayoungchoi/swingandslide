@@ -44,6 +44,11 @@ function PlaygroundList() {
     );
   }
 
+  // home 메뉴 클릭시에 스크롤 탑
+  useEffect(() => {
+    if(location.pathname == '/') window.scrollTo(0, 0);;
+  }, [location]);
+
   useEffect(() => {
     getPlaygrounds();
   }, [conditions]);
