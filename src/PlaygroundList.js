@@ -28,7 +28,7 @@ function PlaygroundList() {
 
     conditionCard = (
       <div>
-        <div className={"card search-info-container mt-2 mb-0 p-2 "+('id' in conditions)?'d-none':''}>
+        <div className={"card search-info-container mt-2 mb-0 p-2 " + (('id' in conditions)?'d-none':'d-block')}>
           <span><BiSearch className="me-2" />
           <span className="me-1">{('key' in conditions)?'':conditions.keyword}</span>
           <Link to="/" className="text-gray float-end"><BiX className="fs-4" /></Link>
