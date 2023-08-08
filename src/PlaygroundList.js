@@ -88,12 +88,14 @@ function PlaygroundList() {
     />
   );
 
+  /* 광고 삽입
   for(let i=0; i<playgroundList.length; i++) {
     if(i>0 && i%4==0) {
       playgroundList.splice(i, 0, <Ads key={'ads' + i} />)
     }
   }
   playgroundList.splice(1, 0, <Ads key={'ads' + 0} />)
+  */
 
   const navigate = useNavigate();
   function contribute() {
