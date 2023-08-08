@@ -41,6 +41,7 @@ body {
     padding-bottom: 50px;
 }
 .fixed-bottom-nav {
+    z-index: 99;
     position: fixed;
     bottom:0;
     max-width: 960px;
