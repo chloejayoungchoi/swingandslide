@@ -5,6 +5,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { BiSearch, BiX, BiRefresh } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
 import Ads from "./components/Ads";
+import Gallery from "./components/Gallery";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -90,6 +91,7 @@ function PlaygroundList() {
     <Playground 
       key={p.id}
       playground={p}
+      setGallery={setGallery}
     />
   );
 
@@ -102,14 +104,22 @@ function PlaygroundList() {
   playgroundList.splice(1, 0, <Ads key={'ads' + 0} />)
   */
 
+  const [images, setImages] = useState([]);
+
+  function setGallery(images) {
+    const newImages = [...images]; // 클리시마다 새로운 images 로 인식하기 위한.. 꼼수
+    setImages(newImages);
+  }
+
   const navigate = useNavigate();
   function contribute() {
     navigate("/contact");
   }
-  
+
   return (
     <div>
       {conditionCard}
+      <Gallery imageList={images} />
       <div className="playground-container">
         {playgroundList}
         <div className="no-playground">Sorry, no playground found at this moment.</div>

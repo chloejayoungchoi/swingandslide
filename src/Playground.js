@@ -51,11 +51,16 @@ function Playground(p) {
         <span className="badge rounded-pill tag-primary cursor-pointer" key={t.id} onClick={searchByTag}>#{t.tag}</span>
     );
 
+    function setGallery(images) {
+        p.setGallery(images);
+    }
+
     return (
         <div className="card playground m-3" key={pg.id}>
             <ImageCarousel 
                 playgroundId={pg.id}
                 playgroundName={pg.name}
+                setGallery={setGallery}
             />
             <div className="card-body">
                 <h5 className="card-title mb-0">{pg.name}</h5>

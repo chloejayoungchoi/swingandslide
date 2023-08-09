@@ -63,10 +63,13 @@ function ImageCarousel(p) {
         );
     });
 
-    const showControl = (images.length > 1)?'':' d-none';
+    function loadGallery() {
+        p.setGallery(images);
+    }
 
+    const showControl = (images.length > 1)?'':' d-none';
     return (
-        <div id={p.playgroundId} className="carousel slide">
+        <div id={p.playgroundId} className="carousel slide" onClick={loadGallery}>
         {/* <div className="carousel-indicators">
             {indicators}
         </div> */}
