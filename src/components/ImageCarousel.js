@@ -69,11 +69,11 @@ function ImageCarousel(p) {
 
     const showControl = (images.length > 1)?'':' d-none';
     return (
-        <div id={p.playgroundId} className="carousel slide" onClick={loadGallery}>
+        <div id={p.playgroundId} className="carousel slide">
         {/* <div className="carousel-indicators">
             {indicators}
         </div> */}
-        <div className="carousel-inner">
+        <div className="carousel-inner" onClick={loadGallery}>
             {carousels}
         </div>
         <button className={"carousel-control-prev" + showControl} type="button" data-bs-target={"#"+p.playgroundId} data-bs-slide="prev">
