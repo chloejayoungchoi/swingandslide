@@ -22,7 +22,7 @@ function Gallery(props) {
       lightbox.destroy();
       lightbox = null;
     };
-  }, [props]);
+  }, [props.imageList]);
 
   return (
     <div className="pswp-gallery" id={galleryID}>
