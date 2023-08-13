@@ -51,8 +51,8 @@ function Playground(p) {
         <span className="badge rounded-pill tag-primary cursor-pointer" key={t.id} onClick={searchByTag}>#{t.tag}</span>
     );
 
-    function setGallery(images) {
-        p.setGallery(images);
+    function setGallery(images, selIndex) {
+        p.setGallery(images, selIndex);
     }
 
     return (

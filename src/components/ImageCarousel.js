@@ -62,6 +62,7 @@ function ImageCarousel(p) {
                     className="d-block w-100" 
                     style={{ height:`${adjHeight}px` }}
                     alt={p.playgroundName + ' ' + index.toString()}
+                    data-index={index}
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src=IMAGE_PATH+'thumb-default.jpg';
@@ -72,7 +73,11 @@ function ImageCarousel(p) {
     });
 
     function loadGallery() {
-        p.setGallery(images);
+        let selIndex = 0;
+        try {
+            selIndex = refCarousel.current.querySelectorAll('div.carousel-item.active img')[0].dataset.index;
+        }catch(e) { }
+        p.setGallery(images, selIndex);
     }
 
     const showControl = (images.length > 1)?'':' d-none';

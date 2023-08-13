@@ -105,10 +105,12 @@ function PlaygroundList() {
   */
 
   const [images, setImages] = useState([]);
+  const [selIndex, setSelIndex] = useState([]);
 
-  function setGallery(images) {
+  function setGallery(images, selIndex) {
     const newImages = [...images]; // 클리시마다 새로운 images 로 인식하기 위한.. 꼼수
     setImages(newImages);
+    setSelIndex(selIndex);
   }
 
   const navigate = useNavigate();
@@ -119,7 +121,7 @@ function PlaygroundList() {
   return (
     <div>
       {conditionCard}
-      <Gallery imageList={images} />
+      <Gallery imageList={images} selIndex={selIndex} />
       <div className="playground-container">
         {playgroundList}
         <div className="no-playground">Sorry, no playground found at this moment.</div>

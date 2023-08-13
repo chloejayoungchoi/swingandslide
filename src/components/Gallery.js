@@ -34,7 +34,7 @@ function Gallery(props) {
           key={galleryID + '-' + index}
           target="_blank"
           rel="noreferrer"
-          ref={index===0?ref:null}
+          ref={index==props.selIndex?ref:null}
         >
         </a>
       ))}
