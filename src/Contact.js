@@ -50,6 +50,10 @@ function Contact() {
 
     return (
         <div className="p-3">
+            <div className="text-center mb-2" >
+            <img src="/images/google-play.png" width="200" alt="Google Play"
+                onClick={()=>window.open("https://play.google.com/store/apps/details?id=com.swingandslideapp&pcampaignid=web_share")}></img>
+            </div>
             <div className="card mb-3">
                 <div className="card-body pt-0">
                     <div className="d-flex justify-content-between align-items-center px-2 mb-2">
