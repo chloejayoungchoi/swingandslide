@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 
@@ -8,7 +8,8 @@ const IMAGE_PATH = process.env.REACT_APP_SUPABASE_STORAGE_DEFAULT_PATH;
 
 function ImageCarousel(p) {
     // console.log('this is imagecarousel at ' + new Date());
-    
+    const refCarousel = useRef();
+
     useEffect(() => {
         getImages();
         const carouselElements = document.querySelectorAll('.carousel');
@@ -19,9 +20,10 @@ function ImageCarousel(p) {
     }, []);
 
     const [images, setImages] = useState([]);
+    const [adjHeight, setAdjHeight] = useState(1);
     async function getImages() {
         let { data } = await supabase.from("playground_image")
-                                    .select("id, filename")
+                                    .select("id, filename, width, height")
                                     .eq('playground_id', p.playgroundId)
                                     .order('order', { ascending: true });
         if(data.length < 1) {
@@ -31,6 +33,11 @@ function ImageCarousel(p) {
             }]
         }
         setImages(data);
+
+        let ratio = 1, newHeight = data[0].height;
+        ratio = (refCarousel.current.offsetWidth)/data[0].width;
+        newHeight = data[0].height*ratio;
+        setAdjHeight(Math.round(newHeight));
     }
 
     // indicators 주석처리 230726
@@ -53,6 +60,7 @@ function ImageCarousel(p) {
                 <img 
                     src={IMAGE_PATH+image.filename} 
                     className="d-block w-100" 
+                    style={{ height:`${adjHeight}px` }}
                     alt={p.playgroundName + ' ' + index.toString()}
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
@@ -69,7 +77,7 @@ function ImageCarousel(p) {
 
     const showControl = (images.length > 1)?'':' d-none';
     return (
-        <div id={p.playgroundId} className="carousel slide">
+        <div id={p.playgroundId} className="carousel slide" ref={refCarousel} >
         {/* <div className="carousel-indicators">
             {indicators}
         </div> */}

@@ -119,8 +119,12 @@ body {
     font-size: 14px;
     // color:$darker;
 }
+.carousel-inner {
+    border-radius: 0.375rem 0.375rem 0 0;
+    background-color: #000;
+}
 .carousel-item img {
-    max-height: 580px;
+    object-fit: scale-down;
     border-radius: 0.375rem 0.375rem 0 0;
 }
 .carousel-item{

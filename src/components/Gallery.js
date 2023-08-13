@@ -29,8 +29,8 @@ function Gallery(props) {
       {props.imageList.map((image, index) => (
         <a
           href={IMAGE_PATH + image.filename}
-          data-pswp-width="773"
-          data-pswp-height="580"
+          data-pswp-width={image.width}
+          data-pswp-height={image.height}
           key={galleryID + '-' + index}
           target="_blank"
           rel="noreferrer"
