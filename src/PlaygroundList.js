@@ -12,9 +12,12 @@ const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.RE
 function PlaygroundList() {
   // console.log('this is app at ' + new Date());
   const [playgrounds, setPlaygrounds] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [hasNext, setHasNext] = useState(false);
+  const LIMIT = 10;
 
   const location = useLocation();
-  const conditions = location.state;
+  const [conditions, setConditions] = useState(location.state);
 
   let conditionCard = ``;
   if(conditions !== null) {
@@ -33,7 +36,7 @@ function PlaygroundList() {
         <div className={"card search-info-container mt-2 mb-0 p-2 " + (('id' in conditions)?'d-none':'d-block')}>
           <span><BiSearch className="me-2" />
           <span className="me-1">{('key' in conditions)?'':conditions.keyword}</span>
-          <Link to="/" className="text-gray float-end"><BiX className="fs-4" /></Link>
+          <div className="text-gray float-end" onClick={clearConditions}><BiX className="fs-4" /></div>
           {conditions.tag?<span className="badge rounded-pill tag-primary m-0">#{conditions.tag}</span>:''}
           {searchFacilityList}
           </span>
@@ -45,14 +48,23 @@ function PlaygroundList() {
     );
   }
 
+  function clearConditions() {
+    setConditions(null);
+    setPlaygrounds([]);
+    setOffset(0);
+  }
+
   // home 메뉴 클릭시에 스크롤 탑
   useEffect(() => {
-    if(location.pathname == '/') window.scrollTo(0, 0);;
+    if(location.pathname == '/') {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   useEffect(() => {
+    setConditions(conditions);
     getPlaygrounds();
-  }, [conditions]);
+  }, [conditions, offset]);
 
   async function getPlaygrounds() {
     let query = supabase.from("playground")
@@ -78,13 +90,23 @@ function PlaygroundList() {
       });
     }
     query = query.eq('isVisible', true);
-    query = query.order('modified_at', { ascending: false });
+    query = query.order('modified_at', { ascending: false })
+    query = query.range(offset, offset+LIMIT-1);
     const { data } = await query;
     if(data===null || !Array.isArray(data)) {
       setPlaygrounds([]);
     }else {
-      setPlaygrounds(data);
+      setPlaygrounds([...playgrounds, ...data]);
     }
+
+    // 다음이 있는지 확인 (Load More button)
+    {
+      query.range(offset+LIMIT, offset+LIMIT);
+      let { data } = await query;
+      if(data.length>0) setHasNext(true);
+      else setHasNext(false);
+    }
+
   }
   
   const playgroundList = playgrounds.map((p) => 
@@ -118,13 +140,27 @@ function PlaygroundList() {
     navigate("/contact");
   }
 
+  function loadMore() {
+    setOffset(offset + LIMIT);
+  }
+
   return (
     <div>
       {conditionCard}
       <Gallery imageList={images} selIndex={selIndex} />
       <div className="playground-container">
         {playgroundList}
-        <div className="no-playground">Sorry, no playground found at this moment.</div>
+        <div className="no-playground d-none">Sorry, no playground found at this moment.</div>
+      </div>
+      <div className="text-center m-3">
+          <button 
+              type="button" 
+              className="btn btn-secondary w-100"
+              onClick={loadMore}
+              style={{display:`${hasNext?'block':'none'}`}}
+              >
+              Load More
+          </button>
       </div>
       <div className="contribute-section d-flex align-items-center">
         <div className="contribute-content">
