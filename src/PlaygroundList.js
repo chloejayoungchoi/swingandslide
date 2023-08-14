@@ -62,6 +62,12 @@ function PlaygroundList() {
   }, [location]);
 
   useEffect(() => {
+    setConditions(location.state);
+    setPlaygrounds([]);
+    setOffset(0);
+  }, [location.state]);
+
+  useEffect(() => {
     setConditions(conditions);
     getPlaygrounds();
   }, [conditions, offset]);
