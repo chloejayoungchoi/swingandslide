@@ -56,7 +56,7 @@ function PlaygroundList() {
 
   // home 메뉴 클릭시에 스크롤 탑
   useEffect(() => {
-    if(location.pathname == '/') {
+    if(location.pathname === '/') {
       window.scrollTo(0, 0);
     }
   }, [location]);
@@ -123,14 +123,13 @@ function PlaygroundList() {
     />
   );
 
-  /* 광고 삽입
+  /* 광고 삽입 */
   for(let i=0; i<playgroundList.length; i++) {
-    if(i>0 && i%4==0) {
+    if(i > 0 && i%4 === 0) {
       playgroundList.splice(i, 0, <Ads key={'ads' + i} />)
     }
   }
   playgroundList.splice(1, 0, <Ads key={'ads' + 0} />)
-  */
 
   const [images, setImages] = useState([]);
   const [selIndex, setSelIndex] = useState([]);
