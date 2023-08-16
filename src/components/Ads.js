@@ -27,6 +27,7 @@ function Ads() {
         }
       }, [])
       return (
+        <div className="mx-3">
         <ins
             className='adsbygoogle'
             style={{ display: 'block' }}
@@ -35,6 +36,7 @@ function Ads() {
             data-ad-format="auto"
             data-full-width-responsive='true'
         ></ins>
+        </div>
       )
 }
 
