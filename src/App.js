@@ -11,7 +11,7 @@ function App() {
     <div className="container-lg px-0">
       <nav className="navbar fixed-top ">
         <div className="container-fluid d-flex justify-content-center">
-          <img src="images/logo.png" alt="Swing & Slide logo" className="logo-image"></img>
+        <Link to="/"><img src="images/logo.png" alt="Swing & Slide logo" className="logo-image"></img></Link>
         </div>
       </nav>
       <Outlet />
