@@ -43,7 +43,7 @@ function Ads() {
 
       /* 인피드 (좌측 이미지) 광고 */
       return (
-        <ins class="adsbygoogle"
+        <ins className="adsbygoogle"
           style={{ display:'block' }}
           data-ad-format="fluid"
           data-ad-layout-key="-f9+5v+4m-d8+7b"
