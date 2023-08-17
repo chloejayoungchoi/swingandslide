@@ -20,7 +20,7 @@ function ImageCarousel(p) {
     }, []);
 
     const [images, setImages] = useState([]);
-    const [adjHeight, setAdjHeight] = useState(1);
+    const [adjImageSize, setImageSize] = useState({width: '100px',  height: '100px;'});
     async function getImages() {
         let { data } = await supabase.from("playground_image")
                                     .select("id, filename, width, height")
@@ -34,11 +34,35 @@ function ImageCarousel(p) {
         }
         setImages(data);
 
-        let ratio = 1, newHeight = data[0].height;
+        let ratio = 1, newWidth=data[0].width, newHeight = data[0].height;
         ratio = (refCarousel.current.offsetWidth)/data[0].width;
+        newWidth = data[0].width*ratio;
         newHeight = data[0].height*ratio;
-        setAdjHeight(Math.round(newHeight));
+        // setAdjHeight(Math.round(newHeight));
+        setImageSize({width:Math.round(newWidth), height:Math.round(newHeight)});
     }
+
+    var timer;
+    useEffect(() => {
+        const handleResize = () => {
+            clearTimeout(timer);
+            timer = setTimeout(()=>{
+                timer=null;
+                let image = refCarousel.current.querySelectorAll('img')[0];
+                let ratio = 1, newWidth=image.width, newHeight = image.height;
+                ratio = (refCarousel.current.offsetWidth)/image.width;
+                newWidth = image.width*ratio;
+                newHeight = image.height*ratio;
+                setImageSize({width:Math.round(newWidth), height:Math.round(newHeight)});
+            }, 100)
+        }
+        window.addEventListener('resize', handleResize, false);
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+        
+    }, []);
 
     // indicators 주석처리 230726
     let indicators = [], carousels = [];
@@ -60,7 +84,12 @@ function ImageCarousel(p) {
                 <img 
                     src={IMAGE_PATH+image.filename} 
                     className="d-block w-100" 
-                    style={{ height:`${adjHeight}px` }}
+                    ref={element => { 
+                        if (element) {
+                            element.style.setProperty('width', `${adjImageSize.width}px`, 'important'); 
+                            element.style.setProperty('height', `${adjImageSize.height}px`, 'important'); 
+                        }
+                    }}
                     alt={p.playgroundName + ' ' + index.toString()}
                     data-index={index}
                     onError={({ currentTarget }) => {
