@@ -32,7 +32,10 @@ function Map(p) {
         const newMap = new window.google.maps.Map(ref.current, {
             center : point,
             zoom : 10,
-            gestureHandling: "greedy"
+            gestureHandling: "greedy",
+            mapTypeControl: false,
+            fullscreenControl: false,
+            streetViewControl: false,
         });     
         setMap(newMap);
 
