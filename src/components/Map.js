@@ -4,13 +4,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
-function Map() {
+function Map(p) {
     const [playgrounds, setPlaygrounds] = useState([]);
     const [map, setMap] = useState(null);
     const ref = useRef();
     const navigate = useNavigate();
     const location = useLocation();
-    const selectedPoint = location.state;
+    let selectedPoint = location.state;
+    if(p.point !== null && p.point !== undefined) {
+        selectedPoint = p.point;
+    }
 
     async function getPlaygrounds() {
         let query = supabase.from("playground")
@@ -108,7 +111,7 @@ function Map() {
         <div 
             ref={ref} 
             id="map" 
-            style={{width:"100%", height: "100vh"}} />
+            className="map"/>
     )
 }
 

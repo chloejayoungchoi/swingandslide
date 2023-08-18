@@ -178,6 +178,31 @@ body {
 }
 
 /*
+ * Playground Detail
+ */
+.playground-detail-container .card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border : 0;
+}
+
+.playground-detail-container .carousel-inner {
+    border-radius: 0 !important;
+}
+.playground-detail-container .map {
+    width: 100%;
+    height: 30vh;
+}
+
+/*
+ * Map
+ */ 
+.map {
+    width: 100%;
+    height: calc(100vh - 70px);
+}
+
+/*
  * Search
  */
 .keyword-input {

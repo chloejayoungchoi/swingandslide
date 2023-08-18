@@ -15,6 +15,7 @@ import Privacy from './Privacy';
 import Terms from './Terms';
 import ImageAttribution from './ImageAttribution';
 import MapBrowse from './MapBrowse';
+import Detail from './Detail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -24,7 +25,8 @@ root.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="/" element={<PlaygroundList />} />
-        <Route path="/playground" element={<PlaygroundList />} />
+        <Route path="/playground/" element={<PlaygroundList />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="search" element={<Search />} />
         <Route path="map" element={<MapBrowse />} />
         <Route path="contact" element={<Contact />} />
