@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -26,78 +24,14 @@ function Map() {
 
     useEffect(()=>{
         getPlaygrounds();
+        // const point = { lat: 49.28413959871361, lng: -123.1300863557788}; // vancouver
         const point = selectedPoint?selectedPoint:{ lat: 49.248025491628304, lng: -122.98289123571041}; // burnaby
         const newMap = new window.google.maps.Map(ref.current, {
             center : point,
             zoom : 10,
-            gestureHandling: "greedy",
-            fullscreenControl: false,
-            mapTypeControlOptions: {
-                position: window.google.maps.ControlPosition.LEFT_BOTTOM,
-            },
+            gestureHandling: "greedy"
         });     
         setMap(newMap);
-
-        const nearMeButton = document.createElement("button");
-        nearMeButton.textContent = "Near Me";
-        nearMeButton.classList.add("btn");
-        nearMeButton.classList.add("btn-secondary");
-        nearMeButton.classList.add("rounded-5");
-        nearMeButton.classList.add("text-white");
-        nearMeButton.classList.add("mt-5");
-        newMap.controls[window.google.maps.ControlPosition.TOP_CENTER].push(nearMeButton);
-
-        const meIcon = {
-            path: window.google.maps.SymbolPath.CIRCLE,
-            fillColor: "blue",
-            fillOpacity: 0.6,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 12,
-        };
-        let meMarker = null;
-
-        nearMeButton.addEventListener("click", () => {
-            nearMeButton.textContent = "loading...";
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
-                        };
-                        newMap.setCenter(pos);
-
-                        if(meMarker !== null) {
-                            meMarker.setMap(null);
-                            meMarker=null;
-                        }
-
-                        meMarker = new window.google.maps.Marker({
-                            position: pos,
-                            title: 'You are here.',
-                            icon: meIcon,
-                            animation: window.google.maps.Animation.BOUNCE,
-                        });
-                        meMarker.setMap(newMap);
-                        newMap.setZoom(13)
-                        nearMeButton.textContent = "Near Me";
-
-                    },
-                    () => {
-                        toast.error("Oops! Please allow me to access your location.", {
-                            position: toast.POSITION.BOTTOM_CENTER
-                        });
-                        nearMeButton.textContent = "Near Me";
-                    }
-                );
-            }else {
-                toast.error("Your browser doesn't support geolocation.", {
-                    position: toast.POSITION.BOTTOM_CENTER
-                });
-            }
-        });
 
     },[]);
 
@@ -171,13 +105,10 @@ function Map() {
     }
 
     return (
-        <>
         <div 
             ref={ref} 
             id="map" 
-            style={{width:"100%", height: `calc(100vh - 70px)`}} />
-        <ToastContainer />
-        </>
+            style={{width:"100%", height: "100vh"}} />
     )
 }
 
