@@ -11,9 +11,7 @@ function Map(p) {
     const navigate = useNavigate();
     const location = useLocation();
     let selectedPoint = location.state;
-    if(p.point !== null && p.point !== undefined) {
-        selectedPoint = p.point;
-    }
+    let selectedId = p.playgroundid;
 
     async function getPlaygrounds() {
         let query = supabase.from("playground")
@@ -23,7 +21,7 @@ function Map(p) {
                           .order('modified_at', { ascending: false });
         const { data } = await query;
         setPlaygrounds(data);
-      }
+    }
 
     useEffect(()=>{
         getPlaygrounds();
@@ -41,17 +39,20 @@ function Map(p) {
 
     },[]);
 
-    var activeInfoWindow= null;
     function search(id) {
-        navigate("/playground", {
-            state: {id: id}
-        });
+        // navigate("/playground", { state: {id: id}});
+        navigate("/detail/" + id);
     }
+
+    let [markers, setMarkers] = useState([])
+    var activeInfoWindow= null;
     useEffect(()=>{
         const marker_icon = process.env.REACT_APP_SUPABASE_STORAGE_DEFAULT_PATH + "map-flag.png";
         
+        let tempMarkers = [];
         playgrounds.forEach((playground)=>{
             const marker = new window.google.maps.Marker({
+                id: playground.id,
                 position: playground.map_position,
                 title: playground.name,
                 icon: marker_icon
@@ -97,9 +98,10 @@ function Map(p) {
                 new window.google.maps.event.trigger( marker, 'click' );
             }
 
-    
+            tempMarkers.push(marker);
             marker.setMap(map);
         });
+        setMarkers(tempMarkers);
 
         
     },[playgrounds]);
@@ -109,6 +111,18 @@ function Map(p) {
         if(b === null) return false;
         return a.lat === b.lat && a.lng === b.lng 
     }
+
+    useEffect(()=>{
+        if(selectedId === null || selectedId === undefined) return;
+        markers.forEach((m)=> {
+            if(m.id === selectedId) {
+                console.log('marker click trigger 2222222222')
+                new window.google.maps.event.trigger( m, 'click' );
+            }else {
+                m.setMap(null);
+            }
+        });
+    },[markers, selectedId]);
 
     return (
         <div 

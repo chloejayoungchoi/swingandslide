@@ -12,19 +12,11 @@ const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.RE
 
 
 function Detail(p) {
-    // path에 id를 달고 들어온 경우. share 
     const {id} = useParams();
     useEffect(() => {
-      console.log('id useEffect ' + id)
       if(id !== null && id !== undefined && id.length > 0) {
-        console.log(id);
         getPlaygroundDetail();
       }
-
-    //   const { data } = supabase.from("playground")
-    //                   .select("id, name, location, " + Object.keys(FACILITIES).toString())
-    //                   .eq('id', id);
-    //   console.log(data);
     }, []);
 
     const [playground, setPlayground] = useState(null);
@@ -32,10 +24,7 @@ function Detail(p) {
         const { data } = await supabase.from("playground")
                       .select("id, name, location, " + Object.keys(FACILITIES).toString())
                       .eq('id', id);
-        console.log(data);
-        console.log(data.length)
         if(data.length>0) {
-            console.log(data[0])
             setPlayground(data[0]);
         }
         //todo: 데이터 없을 경우 정해야함
@@ -61,7 +50,7 @@ function Detail(p) {
                 />
             ):'' }
             <Wrapper apiKey={process.env.REACT_APP_GOOGLEMAPS_KEY}>
-                <Map point={(playground !== null)?playground.location.map_position:null} />
+                <Map playgroundid={(playground !== null)?playground.id:null} />
             </Wrapper>
         </div>
     );
