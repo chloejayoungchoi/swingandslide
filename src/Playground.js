@@ -62,6 +62,10 @@ function Playground(p) {
                 playgroundName={pg.name}
                 setGallery={setGallery}
             />
+            <div className="label">
+                {/* <span className="label-left">event</span> */}
+                {(pg.days<8)?<span className="label-right">new</span>:''}
+            </div>
             <div className="card-body">
                 <h5 className="card-title mb-0">{pg.name}</h5>
                 <span className="text-muted" onClick={()=>{goToMap(pg.location.map_position)}}><BiMap /> {pg.location.city}, {pg.location.province}, {pg.location.country}</span>

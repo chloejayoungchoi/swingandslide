@@ -147,6 +147,36 @@ body {
         height: 17px;
     }
 }
+span.label-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #ffa62b;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    padding: 0 4px;
+}
+span.label-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #BC4749;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    padding: 0 4px;
+}
 /*
  * Contribute
  */
