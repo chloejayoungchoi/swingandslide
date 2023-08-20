@@ -23,7 +23,9 @@ function Search() {
     let searchCondition = {};
 
     function inputKeyword(e) {
-        searchCondition['keyword'] = e.target.value;
+        let inputValue = e.target.value;;
+        if(inputValue !== null  && inputValue !== undefined && inputValue.length > 0)
+            searchCondition['keyword'] = inputValue;
     }
     function activeEnter(e) {
         if(e.key === "Enter") {
@@ -31,7 +33,11 @@ function Search() {
         }
     }
     function changeCondition(key, val) {
-        searchCondition[key] = val;
+        if(val) {
+            searchCondition[key] = val;
+        } else {
+            delete searchCondition[key];
+        }
     }
     function searchByTag(e) {
         navigate("/playground", {
@@ -40,9 +46,11 @@ function Search() {
     }
 
     function search(e) {
-        navigate("/playground", {
-            state: searchCondition
-        });
+        if(Object.keys(searchCondition).length > 0) {
+            navigate("/playground", {
+                state: searchCondition
+            });
+        }
       }
     
     return (
