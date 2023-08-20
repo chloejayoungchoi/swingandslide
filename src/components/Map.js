@@ -116,7 +116,6 @@ function Map(p) {
         if(selectedId === null || selectedId === undefined) return;
         markers.forEach((m)=> {
             if(m.id === selectedId) {
-                console.log('marker click trigger 2222222222')
                 new window.google.maps.event.trigger( m, 'click' );
             }else {
                 m.setMap(null);
