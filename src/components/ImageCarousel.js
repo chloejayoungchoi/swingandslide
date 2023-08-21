@@ -35,10 +35,11 @@ function ImageCarousel(p) {
         setImages(data);
 
         let ratio = 1, newWidth=data[0].width, newHeight = data[0].height;
-        ratio = (refCarousel.current.offsetWidth)/data[0].width;
+        try{
+            ratio = (refCarousel.current.offsetWidth)/data[0].width;
+        }catch(e) { }
         newWidth = data[0].width*ratio;
         newHeight = data[0].height*ratio;
-        // setAdjHeight(Math.round(newHeight));
         setImageSize({width:Math.round(newWidth), height:Math.round(newHeight)});
     }
 
@@ -50,7 +51,9 @@ function ImageCarousel(p) {
                 timer=null;
                 let image = refCarousel.current.querySelectorAll('img')[0];
                 let ratio = 1, newWidth=image.width, newHeight = image.height;
-                ratio = (refCarousel.current.offsetWidth)/image.width;
+                try {
+                    ratio = (refCarousel.current.offsetWidth)/image.width;
+                }catch(e) { }
                 newWidth = image.width*ratio;
                 newHeight = image.height*ratio;
                 setImageSize({width:Math.round(newWidth), height:Math.round(newHeight)});
