@@ -127,13 +127,14 @@ function PlaygroundList() {
     />
   );
 
-  /* 광고 삽입 */
+  /* 광고 삽입 
   for(let i=0; i<playgroundList.length; i++) {
     if(i > 0 && i%6 === 0) {
       playgroundList.splice(i, 0, <Ads key={'ads' + i} />)
     }
   }
   playgroundList.splice(1, 0, <Ads key={'ads' + 0} />)
+  */
 
   const [images, setImages] = useState([]);
   const [selIndex, setSelIndex] = useState([]);
