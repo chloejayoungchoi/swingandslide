@@ -221,8 +221,14 @@ span.label-right {
     border-radius: 0 !important;
 }
 .playground-detail-container .map {
-    width: 100%;
+    width: calc(100% - 2rem);
     height: 30vh;
+    margin: 0 1rem;
+    border-radius: 8px;
+}
+
+.playground-detail-container .map .near-me {
+    display: none;
 }
 
 /*
