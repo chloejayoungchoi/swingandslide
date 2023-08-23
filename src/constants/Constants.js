@@ -22,3 +22,9 @@ export const FACILITIES = {
 export const SEARCH_TAGS = [
     'ZipLine', 'Concession', 'AccessibleSwing', 'Hiking', 'Library', 'Skateboard', 'Basketball', 'Volleyball'
 ];
+
+export const LABEL_ON_IMAGE = [
+    <span className="label-right">new</span>,
+    <span className="label-right bg-yellow">updated</span>,
+    <span className="label-left">event</span>
+];

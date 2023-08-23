@@ -153,7 +153,7 @@ span.label-left {
     left: 20px;
     text-transform: uppercase;
     color: #ffffff;
-    background: #ffa62b;
+    background: #fb6107;
     font-size: 12px;
     height: 20px;
     line-height: 20px;
@@ -168,7 +168,7 @@ span.label-right {
     right: 20px;
     text-transform: uppercase;
     color: #ffffff;
-    background: #BC4749;
+    background: #f21b3f;
     font-size: 12px;
     height: 20px;
     line-height: 20px;
@@ -176,6 +176,9 @@ span.label-right {
     display: block;
     border-radius: 5px;
     padding: 0 4px;
+}
+span.label-right.bg-yellow {
+    background: #fdc500 !important;
 }
 /*
  * Contribute
