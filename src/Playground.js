@@ -3,7 +3,7 @@ import { BiMap } from "react-icons/bi";
 import ImageCarousel from "./components/ImageCarousel";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { FACILITIES, LABEL_ON_IMAGE } from "./constants/Constants";
+import { FACILITIES } from "./constants/Constants";
 import { useNavigate } from "react-router-dom";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
@@ -30,15 +30,15 @@ function Playground(p) {
     let createdDays = Math.round(((new Date()) - (new Date(pg.created_at))) / (1000 * 60 * 60 * 24));
     let modifiedDays = Math.round(((new Date()) - (new Date(pg.modified_at))) / (1000 * 60 * 60 * 24));
     if(createdDays < 7) {
-        labels.push(LABEL_ON_IMAGE[0]); // new
+        labels.push(<span className="label-right" key="new">new</span>); // new
     }
     if(modifiedDays < createdDays && modifiedDays < 7) {
         labels = [];
-        labels.push(LABEL_ON_IMAGE[1]); // updated
+        labels.push(<span className="label-right bg-yellow" key="updated">updated</span>); // updated
     }
 
     // left side
-    // labels.push(LABEL_ON_IMAGE[2]); // event
+    // labels.push(<span className="label-left" key="event">event</span>); // event
 
     function searchByTag(e) {
         navigate("/playground", {
