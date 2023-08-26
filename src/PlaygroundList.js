@@ -74,7 +74,7 @@ function PlaygroundList() {
 
   async function getPlaygrounds() {
     let query = supabase.from("playground")
-                      .select("id, name, location, created_at, "
+                      .select("id, name, location, created_at, modified_at, "
                              + Object.keys(FACILITIES).toString());
     if(conditions !== null) {
       Object.keys(conditions).forEach((key, index)=>{
@@ -103,9 +103,6 @@ function PlaygroundList() {
     if(data===null || !Array.isArray(data)) {
       setPlaygrounds([]);
     }else {
-      data.map((p)=>{
-        p.days = Math.round(((new Date()) - (new Date(p.created_at))) / (1000 * 60 * 60 * 24))
-      });
       setPlaygrounds([...playgrounds, ...data]);
     }
 

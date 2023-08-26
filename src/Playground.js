@@ -25,6 +25,21 @@ function Playground(p) {
         }
     }
 
+    let labels = [];
+    // Right side
+    let createdDays = Math.round(((new Date()) - (new Date(pg.created_at))) / (1000 * 60 * 60 * 24));
+    let modifiedDays = Math.round(((new Date()) - (new Date(pg.modified_at))) / (1000 * 60 * 60 * 24));
+    if(createdDays < 7) {
+        labels.push(<span className="label-right" key="new">new</span>); // new
+    }
+    if(modifiedDays < createdDays && modifiedDays < 7) {
+        labels = [];
+        labels.push(<span className="label-right bg-yellow" key="updated">updated</span>); // updated
+    }
+
+    // left side
+    // labels.push(<span className="label-left" key="event">event</span>); // event
+
     function searchByTag(e) {
         navigate("/playground", {
             state: {'tag':e.target.innerText.substring(1)}
@@ -63,8 +78,7 @@ function Playground(p) {
                 setGallery={setGallery}
             />
             <div className="label">
-                {/* <span className="label-left">event</span> */}
-                {(pg.days<8)?<span className="label-right">new</span>:''}
+                {labels}
             </div>
             <div className="card-body">
                 <h5 className="card-title mb-0">{pg.name}</h5>

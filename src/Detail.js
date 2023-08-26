@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { FACILITIES } from "./constants/Constants";
 import Playground from "./Playground";
-import Map from "./components/Map";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import Gallery from "./components/Gallery";
+import MapInDetail from "./components/MapInDetail";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -50,7 +50,7 @@ function Detail(p) {
                 />
             ):'' }
             <Wrapper apiKey={process.env.REACT_APP_GOOGLEMAPS_KEY}>
-                <Map playgroundid={(playground !== null)?playground.id:null} />
+                <MapInDetail playground={playground} />
             </Wrapper>
         </div>
     );

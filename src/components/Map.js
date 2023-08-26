@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -23,8 +25,51 @@ function Map(p) {
         setPlaygrounds(data);
     }
 
+    function requestLocation() {
+        return new Promise((resolve, reject) => {
+            if (window.ReactNativeWebView) {
+                window.ReactNativeWebView.postMessage(JSON.stringify({ type:"REQ", value: "REQ_ACCESS_FINE_LOCATION" }));
+                resolve(true);
+            } else {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            resolve( {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            });
+                        },
+                        () => {
+                            reject(false);
+                        }
+                    );
+                }else {
+                    reject(false);
+                }
+            }
+        });
+    }
+
     useEffect(()=>{
+        // 현재 위치 정보 가져오기
+        requestLocation().then(
+            (resolve) => {
+                mePosition = resolve;
+                // alert('reqeustLoction ' + mePosition)
+                // nearMeButton.classList.remove("d-none");
+                nearMeButton.textContent = "Near Me";
+            },
+            (reject) => {
+                toast.warn("Oops! Please allow me to access your location.", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+            }
+        )
+
+        // 놀이터 정보 가져오기
         getPlaygrounds();
+
+        // 지도 만들기
         // const point = { lat: 49.28413959871361, lng: -123.1300863557788}; // vancouver
         const point = selectedPoint?selectedPoint:{ lat: 49.248025491628304, lng: -122.98289123571041}; // burnaby
         const newMap = new window.google.maps.Map(ref.current, {
@@ -34,8 +79,90 @@ function Map(p) {
             mapTypeControl: false,
             fullscreenControl: false,
             streetViewControl: false,
+            mapTypeControlOptions: {
+                position: window.google.maps.ControlPosition.LEFT_BOTTOM,
+            },
         });     
         setMap(newMap);
+
+        // 앱인 경우 위치 정보 받기
+        function handleMessage(e) {
+            try {
+                // alert('handleMessage: ' + e.data)
+                let message = JSON.parse(e.data);
+                if(message.type === "GRANTED") {
+                    mePosition = message.value;
+                }else {
+                    toast.error("Please allow the location permission.", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                }
+            }catch(e) {
+                console.error(e)
+            }
+        }
+
+        const userAgent = navigator.userAgent.toLowerCase();
+        if(userAgent.indexOf('android') > -1) {
+            // alert('android userAgent')
+            document.addEventListener('message', handleMessage);
+        }else {
+            window.addEventListener('message', handleMessage); 
+        }
+
+        // near me 버튼 만들기
+        const nearMeButton = document.createElement("button");
+        nearMeButton.textContent = "Loading...";
+        nearMeButton.classList.add("near-me");
+        nearMeButton.classList.add("btn");
+        nearMeButton.classList.add("btn-secondary");
+        nearMeButton.classList.add("rounded-5");
+        nearMeButton.classList.add("text-white");
+        nearMeButton.classList.add("m-4");
+        // nearMeButton.classList.add("d-none");
+        newMap.controls[window.google.maps.ControlPosition.TOP_LEFT].push(nearMeButton);
+
+        const meIcon = {
+            path: window.google.maps.SymbolPath.CIRCLE,
+            fillColor: "blue",
+            fillOpacity: 0.6,
+            strokeWeight: 0,
+            rotation: 0,
+            scale: 12,
+        };
+        let meMarker = null;
+        let mePosition;
+
+        nearMeButton.addEventListener("click", () => {
+            nearMeButton.textContent = "Loading...";
+            // alert(mePosition.lat + ", " + mePosition.lng)
+            if(mePosition === null || mePosition === undefined) {
+                console.error("Couldn't find the current location.")
+            }else {
+                newMap.setCenter(mePosition);
+
+                if(meMarker !== null) {
+                    meMarker.setMap(null);
+                    meMarker=null;
+                }
+
+                meMarker = new window.google.maps.Marker({
+                    position: mePosition,
+                    title: 'You are here.',
+                    icon: meIcon,
+                    animation: window.google.maps.Animation.BOUNCE,
+                });
+                meMarker.setMap(newMap);
+                newMap.setZoom(13)
+                nearMeButton.textContent = "Near Me";
+            }
+
+        });
+
+        return() => {
+            document.removeEventListener('message', handleMessage);
+            window.removeEventListener('message', handleMessage);
+        }
 
     },[]);
 
@@ -47,6 +174,7 @@ function Map(p) {
     let [markers, setMarkers] = useState([])
     var activeInfoWindow= null;
     useEffect(()=>{
+        // 놀이터 정보가 불러와 지면 마커 만들기
         const marker_icon = process.env.REACT_APP_SUPABASE_STORAGE_DEFAULT_PATH + "map-flag.png";
         
         let tempMarkers = [];
@@ -124,10 +252,13 @@ function Map(p) {
     },[markers, selectedId]);
 
     return (
+        <>
         <div 
             ref={ref} 
             id="map" 
             className="map"/>
+        <ToastContainer />
+        </>
     )
 }
 
