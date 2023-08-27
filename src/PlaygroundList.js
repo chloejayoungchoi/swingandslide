@@ -6,6 +6,7 @@ import { BiSearch, BiX, BiRefresh } from "react-icons/bi";
 import { FACILITIES } from "./constants/Constants";
 import Ads from "./components/Ads";
 import Gallery from "./components/Gallery";
+import Loading from "./components/Loading";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
@@ -18,6 +19,8 @@ function PlaygroundList() {
 
   const location = useLocation();
   const [conditions, setConditions] = useState(location.state);
+
+  const [loading, setLoading] = useState(true);
 
   let conditionCard = ``;
   if(conditions !== null) {
@@ -113,7 +116,7 @@ function PlaygroundList() {
       if(data !== null && data.length>0) setHasNext(true);
       else setHasNext(false);
     }
-
+    setTimeout(()=>{ setLoading(false) }, 1000);
   }
   
   const playgroundList = playgrounds.map((p) => 
@@ -153,6 +156,7 @@ function PlaygroundList() {
 
   return (
     <div>
+      {loading?<Loading />:null}
       {conditionCard}
       <Gallery imageList={images} selIndex={selIndex} />
       <div className="playground-container">
