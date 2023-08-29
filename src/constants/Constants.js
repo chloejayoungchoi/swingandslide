@@ -20,5 +20,5 @@ export const FACILITIES = {
 };
 
 export const SEARCH_TAGS = [
-    'ZipLine', 'Concession', 'AccessibleSwing', 'Hiking', 'Library', 'Skateboard', 'Basketball', 'Volleyball'
+    'ZipLine', 'Concession', 'EVcharging', 'TeslaCharger', 'AccessibleSwing', 'Hiking', 'Library', 'Skateboard', 'Basketball', 'Volleyball'
 ];
